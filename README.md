@@ -1,5 +1,6 @@
-# Bestbuy/Walmart Sniper
-Automation script to quickly add products to cart and checkout.
+# Bestbuy/Walmart Sniper (Canada)
+Automation script to quickly add products to cart and checkout. Can be used for any product as long as you adjust for the product id/sku
+Purely for education and not for scalping...
 
 ## Prerequisites
    Google chrome (v87.X.X)
