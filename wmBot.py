@@ -115,7 +115,7 @@ class wmBot:
         self.clickElement('checkoutApply')
 
         # Place order
-        # self.clickElement('placeOrder')
+        self.clickElement('placeOrder')
 
 
         # ---- End test -------------------------------------------------------

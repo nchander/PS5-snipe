@@ -6,6 +6,7 @@ from wmBot import *
 from helpers import *
 from datetime import datetime
 import time
+import argparse
 
 
 # User settings
@@ -29,21 +30,33 @@ billing = {
     'ccSecCode': 'XXX'
 }
 
-# Main
-wmBot(link,settings, billing)
-
-# User customized variables
-check_bestbuy = True
-check_walmart = True
-
 SKU_bb = [14962185,14962184]
 ID_wm = [6000202198562,6000202198823,6000201790922,6000202282463,6000202283428]
 
-stopOnFound = True
-sleepTime = int(60 * 1)
+
+
+# Read args from command line input and update default values
+parser = argparse.ArgumentParser()
+
+# Create options and setup
+parser.add_argument('-w', required=False, action='store_true', help='Check Walmart stock')
+parser.add_argument('-b', required=False, action='store_true', help='Check BestBuy stock')
+parser.add_argument('-s', required=False, action='store_true', help='Stop scanning once stock is available')
+parser.add_argument('-r', required=True, default=60, type=int, help='Delay in seconds between scans')
+parser.add_argument('-m', required=True, type=int, choices=[1,2], help='Mode of operation. 1: scan, 2: scan and buy')
+
+# Get arg values
+arguments = parser.parse_args()
+check_walmart = arguments.w
+check_bestbuy = arguments.b
+stopOnFound = arguments.s
+sleepTime = arguments.r
+mode = arguments.m
+
+# flag current stock
 found = False
 
-while (not found) and (stopOnFound):
+while (not found):
     # hold links that are in stock and open them after each iteration
     inStockLinks = []
 
@@ -65,7 +78,8 @@ while (not found) and (stopOnFound):
                 log = '[{}][{} - BestBuy]: {} has {} units available.\n'.format(now.strftime("%Y-%m-%d %H:%M:%S"), item['sku'], item['name'], item['availability']['onlineAvailabilityCount'])
                 writelog(log)
 
-                # Open in browser to enter queue
+                # Open in browser to enter queue/buy if mode is 2
+                # if (mode == 2):
 
 
 
@@ -80,10 +94,11 @@ while (not found) and (stopOnFound):
                 log = '[{}][{} - Walmart]: {} has {} units available.\n'.format(now.strftime("%Y-%m-%d %H:%M:%S"), item['sku'], item['name'], item['availableQuantity'])
                 writelog(log)
 
-                # Open in browser in new child process, remove product id from list to check
-                ID_wm.remove(pid)
-                wmBot(item['productUrl'],settings, billing)
-                break
+                # If in buy mode, open in browser in new child process, remove product id from list to check
+                if (mode == 2):
+                    ID_wm.remove(pid)
+                    wmBot(item['productUrl'],settings, billing)
+                    break
 
 
 

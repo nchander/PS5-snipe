@@ -33,12 +33,44 @@ billing = {
 }
 ```
 
+
+
 If on windows, change the command run by `clear()` in `./helpers.py` to this:
+
 ```
 def clear():
     # os.system('clear')    # Linux/MacOS
     os.system('cls')    # Windows
 ```
 
+
+
 #### Run
-   `python3 ./snipe`
+
+ `python3 snipe.py [-h] [-w] [-b] [-s] -r R -m {1,2}`
+
+
+
+##### Arguments:
+
+` -h`, `--help` show this help message and exit
+
+ `-w`     Check Walmart stock
+
+ `-b`     Check BestBuy stock
+
+ `-s`     Stop scanning once stock is available
+
+ `-r R`    Delay in seconds between scans
+
+ `-m {1,2}`  Mode of operation. 1: scan, 2: scan and buy
+
+
+
+##### Example
+
+`python3 snipe.py -w -b -s -r 60 -m1`
+
+
+
+This will search BestBuy and Walmart every 60 seconds, stopping once available stock is found and will not attempt to purchase the available product. 

@@ -21,7 +21,7 @@ def checkCategory_bb(cat):
     'Accept': '*/*',
     'Accept-Language': 'en',
     'Accept-Encoding': 'gzip, deflate, br',
-    'Referer': 'https://www.bestbuy.ca/en-ca/category/ps5-consoles/17583383',
+    'Referer': 'https://www.bestbuy.ca/en-ca/',
     'Connection': 'keep-alive',
     'Pragma': 'no-cache',
     'Cache-Control': 'no-cache'
@@ -141,7 +141,7 @@ def outputdata(store,item):
         print('{:>10}{:>20} {}'.format('','Online Stock:',item['availableQuantity']))
         print('{:>10}{:>20} {}\n'.format('','Link:',item['productUrl']))
 
-        return 1 if ((item['gmAvailability'] != 'OutOfStock') or (item['availableQuantity'] > 0)) else 0
+        return 1 if ((item['gmAvailability'] not in  ['OutOfStock', 'NotSold']) or (item['availableQuantity'] > 0)) else 0
 
 # write data to logfile - break up logs later...
 def writelog(s):
