@@ -2,10 +2,9 @@ import json
 import requests
 import os
 
-# change depending on host os. uncomment depending on host os
+# Clear depending on OS
 def clear():
-    os.system('clear')      # Linux/MacOS
-    # os.system('cls')      # Windows
+    os.system('clear') if (os.name == 'posix') else os.system('cls')
 
 
 # Get BB json response for category id
@@ -73,7 +72,7 @@ def checkID_wm(id):
 
     payload = {
     "fsa":"M6H",
-    "products": [{"productId":"6000202198562", "skuIds": [str(m[id][0])]}],
+    "products": [{"productId": str(id), "skuIds": [str(m[id][0])]}],
     "lang":"en",
     "pricingStoreId":"3106",
     "fulfillmentStoreId":"3106",

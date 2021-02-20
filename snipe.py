@@ -9,7 +9,7 @@ import time
 import argparse
 
 
-# User settings
+# User settings - should make this read from a setup file or user input
 settings = {
     'email': 'XXXX@XXXX.XXX',
     'firstName': 'XXXXX',
@@ -30,6 +30,7 @@ billing = {
     'ccSecCode': 'XXX'
 }
 
+# SKU/Product IDs to check. 
 SKU_bb = [14962185,14962184]
 ID_wm = [6000202198562,6000202198823,6000201790922,6000202282463,6000202283428]
 

@@ -36,16 +36,6 @@ billing = {
 
 
 
-If on windows, change the command run by `clear()` in `./helpers.py` to this:
-
-```
-def clear():
-    # os.system('clear')    # Linux/MacOS
-    os.system('cls')    # Windows
-```
-
-
-
 #### Run
 
  `python3 snipe.py [-h] [-w] [-b] [-s] -r R -m {1,2}`
@@ -72,6 +62,13 @@ def clear():
 
 `python3 snipe.py -w -b -s -r 60 -m1`
 
-
-
 This will search BestBuy and Walmart every 60 seconds, stopping once available stock is found and will not attempt to purchase the available product. 
+
+
+
+## To Do
+
+1. Fix BestBuy purchasing now that queue likely isn't a problem
+2. Read links to check from text file so it can be easily used for any product
+3. Create setup script for user to input billing and shipping details
+4. Re-enable single product mode for quickly running program for a user given link from command line arguments
