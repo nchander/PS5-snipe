@@ -42,7 +42,7 @@ billing = {
 
 
 
-##### Arguments:
+##### Arguments and Flags:
 
 ` -h`, `--help` show this help message and exit
 
